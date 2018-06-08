@@ -1,0 +1,39 @@
+config:
+  port: 22
+  host: 127.0.0.1
+
+  log:
+    path: jumpd.log
+    level: 5
+
+  hostkey:
+    path: ssh_host_rsa_key
+    size: 2048
+
+servers:
+  - name: host1
+    host: 1.1.1.1
+    port: 22
+  - name: host2
+    host: 2.2.2.2
+  - host: 3.3.3.3
+    port: 33
+  - host: host4.com
+    id: 444
+    remoteuser: user5
+
+groups:
+  - name: test
+    access:
+      - host4.com
+      - "3.3.3.3:1222"
+
+users:
+  - name: user1
+    pass: 1234
+    default: host1
+    groups:
+      - test
+    access:
+      - host1
+      - host2
